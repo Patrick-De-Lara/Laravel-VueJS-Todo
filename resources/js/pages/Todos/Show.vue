@@ -26,19 +26,6 @@ const dueDateStatus = computed(() => {
   return getDueDateStatus(todo.value.due_date, todo.value.is_completed)
 })
 
-const dueDateBadgeClass = computed(() => {
-  switch (dueDateStatus.value) {
-    case 'overdue':
-      return 'bg-red-100 text-red-800 border-red-200'
-    case 'urgent':
-      return 'bg-orange-100 text-orange-800 border-orange-200'
-    case 'completed':
-      return 'bg-green-100 text-green-800 border-green-200'
-    default:
-      return 'bg-blue-100 text-blue-800 border-blue-200'
-  }
-})
-
 const loadTodo = async () => {
   const data = await fetchTodo(parseInt(props.id))
   if (data) {
