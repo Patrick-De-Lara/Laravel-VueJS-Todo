@@ -55,7 +55,6 @@ export function useTodos() {
   }
 
   const createTodo = async (data: { title: string; description: string; due_date: string; file: File | null }) => {
-    console.log('Creating todo with data:', data)
     
     try {
       let response
@@ -67,14 +66,13 @@ export function useTodos() {
         if (data.description) formData.append('description', data.description)
         if (data.due_date) formData.append('due_date', data.due_date)
         formData.append('attachment', data.file)
-
-        console.log('Sending request with FormData to /api/todos')
+     
         response = await axios.post('/api/todos', formData, {
           headers: { 'Content-Type': 'multipart/form-data' },
           timeout: 30000 // Add 30 second timeout
         })
       } else {
-        console.log('Sending request with JSON to /api/todos')
+        ('Sending request with JSON to /api/todos')
         response = await axios.post('/api/todos', {
           title: data.title,
           description: data.description || '',
@@ -83,8 +81,6 @@ export function useTodos() {
           timeout: 30000 // Add 30 second timeout
         })
       }
-      
-      console.log('Response received:', response.data)
       
       // Don't manually add to array - let the parent refetch
       // This prevents reactivity issues with computed properties

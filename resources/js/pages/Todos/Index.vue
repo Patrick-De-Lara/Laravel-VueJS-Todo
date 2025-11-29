@@ -54,25 +54,20 @@ const handleToggleComplete = async (todo: any) => {
 const handleCreateTodo = async (data: { title: string; description: string; due_date: string; file: File | null }) => {
   if (isSubmitting.value) return // Prevent double submission
   
-  console.log('handleCreateTodo called with:', data)
   isSubmitting.value = true
   formErrors.value = {}
   
   try {
     const result = await createTodo(data)
-    console.log('createTodo result:', result)
     
     if (result.success) {
-      console.log('Success! Closing modal...')
       showCreateModal.value = false
       formErrors.value = {}
       showNotification('Todo created successfully!', 'success')
       
       // Refetch todos to avoid reactivity issues with computed properties
       await fetchTodos()
-      console.log('Modal closed, notification shown, todos refetched')
     } else {
-      console.log('Failed with errors:', result.errors)
       formErrors.value = result.errors || {}
       showNotification('Failed to create todo', 'error')
     }
