@@ -72,7 +72,6 @@ export function useTodos() {
           timeout: 30000 // Add 30 second timeout
         })
       } else {
-        ('Sending request with JSON to /api/todos')
         response = await axios.post('/api/todos', {
           title: data.title,
           description: data.description || '',
