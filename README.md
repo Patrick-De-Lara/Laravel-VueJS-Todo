@@ -33,14 +33,10 @@ Before you begin, ensure you have met the following requirements:
    ```bash
    php artisan key:generate
    ```
-7. Run database migrations:
+7. Run database migrations with seeders:
    ```bash
-    php artisan migrate
+    php artisan migrate:fresh --seed
     ```
-> Run Seeders (optional):
-   ```bash
-   php artisan db:seed
-   ```
 8. Start the development server:
     ```bash
     php artisan serve
